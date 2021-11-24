@@ -22,11 +22,14 @@ class Hangman {
         if (this.status === `Playing`) {
             return `Guesses left: ${this.remainingGuesses}`
         } else if (this.status === `Failed`) {
-            return `Nice try! The word was "${this.word.join(``)}"`
+            return `Nice try! `
         } else {
             return `Great work! you guessed the word!`
         }
     }
+    
+    // The word was "${this.word.join(``)}"
+    
     makeGuess(guess) {
         guess = guess.toLowerCase()
         const isUnique = !this.guessedLetters.includes(guess)
