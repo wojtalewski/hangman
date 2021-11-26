@@ -2,23 +2,40 @@
 
 const puzzleEl = document.querySelector(`#puzzle`)
 const guessesEl = document.querySelector(`#guesses`)
+let game1 
 
-const game1 = new Hangman(`Zbigniew Ziobro`, 2)
+// puzzleEl.textContent = game1.puzzle
+// guessesEl.textContent = game1.status
 
-puzzleEl.textContent = game1.getPuzzle()
-guessesEl.textContent = game1.getStatus()
-console.log(game1.status)
-
-window.addEventListener(`keypress`, function (e) {
+window.addEventListener(`keypress`, (e) => {
     const guess = String.fromCharCode(e.charCode)
     game1.makeGuess(guess)
-    puzzleEl.textContent = game1.getPuzzle()
-    guessesEl.textContent = game1.getStatus()
-    console.log(game1.status)
-    
+    render()
 })
 
+const render = () => {
+    puzzleEl.textContent = game1.puzzle
+    guessesEl.textContent = game1.statusMessage
+}
 
+const startGame = async () => {
+    const puzzle = await getPuzzle(`2`)
+    game1 = new Hangman(puzzle, 5)
+    render()
+}
 
+document.querySelector(`#reset`).addEventListener(`click`, startGame)
 
+startGame()
 
+// getPuzzle(`2`).then((puzzle) => {
+//     console.log(puzzle)
+// }).catch((err) => {
+//     console.log(`Error: ${err}`)
+// })
+
+// getCurrentCountry().then((country) => {
+//     console.log(country.name.common)
+// }).catch((error) => {
+//     console.log(`Error: ${error}`)
+// })
