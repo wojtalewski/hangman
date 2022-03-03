@@ -8,6 +8,6 @@ HTML
 
 CSS
 
-JacaScript
+JavaScript
 
 [Hangman Game - Live](https://wojtalewski-hangman.netlify.app/)
